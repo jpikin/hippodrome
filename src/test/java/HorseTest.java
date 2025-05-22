@@ -39,5 +39,20 @@ public class HorseTest {
         assertEquals("Name cannot be blank.", exception.getMessage());
     }
 
+    @Test
+    public void testConstructorNegativeSpeed(){
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Horse("Jan", -30.0, 30.0);
+        });
+    }
+
+    @Test
+    public void testConstructorMessageNegativeSpeed(){
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Horse("Jan", -30.0, 30.0);
+        });
+        assertEquals("Speed cannot be negative.", exception.getMessage());
+    }
+
 }
 
