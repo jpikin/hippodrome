@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -84,6 +86,14 @@ public class HorseTest {
     public void testGetDistance(){
         Horse horse = new Horse("Jan", 30.0, 30.0);
         assertEquals(30.0, horse.getDistance());
+    }
+
+    @Test
+    public void testMove(){
+        try (MockedStatic<Horse> mockedStatic = Mockito.mockStatic(Horse.class)) {
+            new Horse("Jan", 30.0, 30.1).move();
+            mockedStatic.verify(() -> Horse.getRandomDouble(0.2, 0.9));
+        }
     }
 
 }
