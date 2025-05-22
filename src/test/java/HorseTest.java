@@ -69,5 +69,22 @@ public class HorseTest {
         assertEquals("Distance cannot be negative.", exception.getMessage());
     }
 
+    @Test
+    public void testGetName(){
+        Horse horse = new Horse("Jan", 30.0, 30.0);
+        assertEquals("Jan", horse.getName());
+    }
+    @Test
+    public void testGetSpeed(){
+        Horse horse = new Horse("Jan", 30.0, 30.0);
+        assertEquals(30.0, horse.getSpeed());
+    }
+
+    @Test
+    public void testGetDistance(){
+        Horse horse = new Horse("Jan", 30.0, 30.0);
+        assertEquals(30.0, horse.getDistance());
+    }
+
 }
 
