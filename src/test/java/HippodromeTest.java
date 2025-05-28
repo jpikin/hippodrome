@@ -79,9 +79,5 @@ public class HippodromeTest {
         Hippodrome hippodrome = new Hippodrome(horses);
         Horse speedyDriver = hippodrome.getWinner();
         assertEquals(testHorse, speedyDriver);
-
-        
     }
-
-
 }
