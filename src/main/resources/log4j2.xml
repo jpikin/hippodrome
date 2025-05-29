@@ -1,20 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<configuration>
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern = "%d{yyyy-mm-dd HH:mm:ss,SSS} %-5level%t: %msg%n"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5level %t: %msg%n"/>
         </Console>
-        <File name="File" filename="logs/application.log">
-            <PatternLayout pattern = "%d{yyyy-mm-dd HH:mm:ss,SSS} %-5level%t: %msg%n"/>
-        </File>
+        <RollingFile name="File" fileName="logs/hippodrome.log" filePattern="logs/hippodrome-%d{yyyy-MM-dd}.log">
+        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+        <DefaultRolloverStrategy max="7"/>
+        <Delete>
+            <IfFileName glob="*.log"/>
+            <IfLastModified age="7D"/>
+        </Delete>
+        <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5level %t: %msg%n"/>
+        </RollingFile>
     </Appenders>
     <Loggers>
-<!--        <Logger name="org.example.Main" level="info" additivity="false"> -->
-<!--        -->
-<!--        </Logger>-->
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>
         </Root>
+
     </Loggers>
-</configuration>
+</Configuration>
